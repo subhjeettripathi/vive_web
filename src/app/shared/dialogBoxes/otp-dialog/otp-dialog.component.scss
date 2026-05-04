@@ -1,0 +1,33 @@
+// ::ng-deep .ng-otp-input-wrapper .otp-input:not(:last-child) {
+//     margin-right: 16px !important;
+// }
+
+.otpInput {
+    ::ng-deep .ng-otp-input-wrapper .otp-input:not(:last-child) {
+        margin-right: 12px !important;
+    }
+}
+
+
+::ng-deep .otp-input:focus-visible{
+    border-bottom: 2px solid var(--theme-secondary-color) !important;
+}
+
+.otpResend {
+    button {
+        color: #B4B4B4;
+        font-size: 16px;
+    }
+
+    // span{
+    //     color:#FFFFFF;
+    //     border-bottom: 1px solid white;
+    // }
+}
+
+.insideBtn {
+    color: #FFFFFF !important;
+    border: none;
+    border-bottom: 1px solid white;
+    background-color: transparent;
+}

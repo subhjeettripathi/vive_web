@@ -1,0 +1,25 @@
+<div fxLayout="column" fxLayoutGap="10px">
+    <div class="parental-control-content">
+        <span class="img-logo" *ngIf="baseLine?.ageConstent?.logo?.is_allow == 1">
+            <img src="{{baseLine.ageConstent.logo.web}}" alt="vive" loading="lazy"  class="vive-img">
+        </span>
+        <button (click)="close()" class="close-btn">
+            <img src="assets/arrows_icons/VectorClose.svg" alt="">
+        </button>
+        <div>
+            <p class="adulttHeading"  *ngIf="baseLine?.ageConstent?.heading?.is_allow == 1">{{baseLine?.ageConstent?.heading?.text}}</p>
+            <p class="adultContent" *ngIf="baseLine?.ageConstent?.description?.is_allow == 1">
+                {{baseLine?.ageConstent?.description?.text}}
+            </p>
+            <div class="row d-flexi">
+                <div class="col-12">
+                    <button (click)="openSigninPopup()" type="button" class="btn-one-1" *ngIf="baseLine?.ageConstent?.register_btn?.is_allow == 1">{{baseLine?.ageConstent?.register_btn?.text}}</button>
+                </div>
+                <div class="col-12">
+                    <button (click)="yesOver18()" type="button" class="btn-two-2" *ngIf="baseLine?.ageConstent?.age_btn?.is_allow == 1">{{baseLine?.ageConstent?.age_btn?.text}}</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+
+
+
+
+.otpResend {
+    button {
+        color: #B4B4B4;
+        font-size: 16px;
+    }
+}
+.insideBtn {
+    color: #FFFFFF !important;
+    border: none;
+    border-bottom: 1px solid white;
+    background-color: transparent;
+}
+
+button:disabled{
+    cursor: not-allowed;
+  pointer-events: all !important;
+}

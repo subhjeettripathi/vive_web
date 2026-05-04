@@ -1,0 +1,42 @@
+
+<div class="section-setting" *ngIf="showParental">
+    <div fxLayout="row" fxLayoutGap="100px" fxLayoutGap.xs="8px" class="pb-3">
+      
+      <!-- Title -->
+      <div fxFlex="20" fxFlex.xs="50" class="max-set">
+        <p class="text-title">Parental Lock:</p>
+      </div>
+  
+      <!-- Content -->
+      <div class="setting-content" fxFlex="80" fxFlex.xs="50" class="setting-flex">
+        
+        <!-- Enable toggle -->
+        <div *ngIf="parentalEnable" class="with-toggle">
+          Enable
+          <mat-slide-toggle
+            class="slide-toggle"
+            [checked]="checked"
+            #parentchecking
+            (change)="isParentalChecked($event)">
+          </mat-slide-toggle>
+        </div>
+  
+        <!-- Change Pin -->
+        <div *ngIf="changePinParental" class="text-value" (click)="changePin()">
+          Change Pin &gt;
+        </div>
+  
+        <!-- Change Restriction -->
+        <div *ngIf="changePinParental" class="text-value" (click)="changeRestriction()">
+          Change Viewing Restriction &gt;
+        </div>
+  
+        <!-- Restriction Level -->
+        <div *ngIf="changePinParental" class="text-restrict">
+          {{ changeRestrictionLevel }}
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  

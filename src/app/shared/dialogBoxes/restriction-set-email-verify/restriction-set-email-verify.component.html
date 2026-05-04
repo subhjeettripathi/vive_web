@@ -1,0 +1,35 @@
+<div fxLayout="column" fxLayoutGap="10px">
+    <div class="parental-control-content">
+        <div class="alt-login-img" *ngIf="basesignin.parentalEmailVerify.logo.is_allow == 1">
+            <img [src]="basesignin.parentalEmailVerify.logo.web" alt="vive" class="vive-img">
+        </div>
+        <button class="close-btn">
+            <img src="assets/arrows_icons/VectorClose.svg"  (click)="close()" alt="">
+        </button>
+
+        <div>
+            <p class="heading"> Verify Your Account</p>
+
+            <p class="email_head">
+                Enter your login password for {{loginId.email}}
+            </p>
+            <p style="color: red;" *ngIf="msg">Invalid Password</p>
+            <form [formGroup]="otpForm" #otpFormDir="ngForm" (ngSubmit)="submitOtplogin()">
+                <div style="position:relative" class="restrict">
+                    <span (click)="showPassword1(input1)" class="showBtn"><img [hidden]="showpassword1" width="20px"
+                            height="20px" src="assets/img/eye-closed.svg">
+                        <img width="20px" height="20px" [hidden]="!showpassword1" src="assets/img/eye-open-v1.svg">
+                    </span>
+                    <input type="password" #input1 placeholder="Enter Your Password" id="myText" autocomplete="off" formControlName="email">
+                </div>
+                
+                <a class="verify_forgot" (click)="forgotPassword()">Forgot your password?</a>
+                <button class="verify_submit">Submit</button>
+            </form>
+        </div>
+
+
+    </div>
+
+
+</div>

@@ -1,0 +1,64 @@
+@import "../variables/colors.variables.scss";
+@import "../variables/factory.variables.scss";
+
+
+.ott-10mr {
+    margin-right: 30px;
+}
+
+.t-white {
+    color: #fff;
+}
+
+.bg-p {
+    background: $bg-p;
+    border-radius: $bg-r !important ;
+    // min-height: $bg-min-height !important;
+}
+.bg-s {
+    background: $bg-s  !important;
+}
+.bg-payment{
+    background: $bg-payment-card !important;
+}
+.bg-
+.alt-blr {
+    border-right: 1px solid $bg-p  !important;
+}
+
+.alt-bll {
+    border-left: 1px solid $bg-p  !important;
+}
+
+.alt-bg-sec {
+    background-color: $t-s  !important;
+}
+
+.t-p {
+    color: $t-p  !important;
+}
+.t-p-500{
+    font-weight: 500;
+    color: $t-p  !important;
+}
+.t-p-600{
+    font-weight: 600;
+    color: $t-p  !important;
+}
+
+.alt-bg-sec{
+    background-color: $t-s !important;
+}
+.t-y{
+    color: var(--theme-secondary-color) !important;
+}
+.t-s {
+    color: $t-s  !important;
+}
+.text-center{
+    text-align: center !important;
+}
+
+.height-nav{
+    height: 100%;
+}

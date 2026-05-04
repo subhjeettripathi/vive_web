@@ -1,0 +1,202 @@
+<div class="sec-top-payment">
+  <h1 class="font-36">
+    <span class="mr-3 arrow-right">
+      <img src="assets/svgs/Vector-back.svg" class="arr-icon" (click)="back()" alt="Back" />
+    </span>
+    Subscription
+  </h1>
+
+  <div class="payment-container">
+    <ng-container [ngSwitch]="activeButton">
+      <ng-container *ngSwitchCase="1">
+        <div class="main-pack bg-p" [style.background]="'url(' + dynamicImgUrl + ')'">
+          <div class="choose-head">Choose Your Plan</div>
+
+          <!-- DESKTOP VIEW -->
+          <div class="row back-pg m-0" *ngIf="!isMobileView">
+            <div class="col-lg-4 col-md-12 col-sm-12 card-main" *ngFor="let sub of subscribtionArr; let i = index">
+              <div class="card-1" (click)="onSelectionChange(sub, i)"
+                [ngClass]="{ 'card-selected': selectedIndex === i }">
+                <div class="circle" *ngIf="selectedIndex === i">
+                  <img src="assets/new_icons/tick-subscribe.png" alt="" />
+                </div>
+                <div class="card-body">
+                  <div class="subs-des">
+                    <div class="pop-title">
+                      <h6 class="card-subtitle-1" *ngIf="sub.s_package.device_restriction == 1">
+                        {{ device_limit }}
+                      </h6>
+                      <h6 class="card-subtitle-1" *ngIf="sub.s_package.device_restriction != 1">
+                        {{ sub.s_package.device_restriction + " Devices" }}
+                      </h6>
+                    </div>
+
+                    <div class="pack-select">
+                      <h5 class="card-title-1">{{ sub.s_package.p_name }}</h5>
+                    </div>
+
+                    <div class="card-price" *ngIf="
+                        sub.s_package.discounted_price == 0.0 ||
+                        sub.s_package.discounted_price == ' '
+                      ">
+                      {{
+                      sub.s_package.p_currency + " " + sub.s_package.p_price
+                      }}
+                    </div>
+                    <div class="card-price" *ngIf="
+                        sub.s_package.discounted_price != 0.0 &&
+                        sub.s_package.discounted_price != ' '
+                      ">
+                      <span class="discountType">{{
+                        sub.s_package.p_currency + " " + sub.s_package.p_price
+                        }}</span>
+                      <span>{{
+                        sub.s_package.p_currency +
+                        " " +
+                        sub.s_package.discounted_price
+                        }}</span>
+                    </div>
+
+                    <ul>
+                      <li class="card-text-1" [innerHTML]="sub.s_package.description"></li>
+                    </ul>
+                  </div>
+                  <div class="popular-plan" *ngIf="sub?.s_package?.recommend == '1'">
+                    <h5>Recommended</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- DESKTOP PLAN DETAILS SECTION -->
+          <div class="card-details-container" *ngIf="
+              !isMobileView &&
+              selectedIndex !== -1 &&
+              subscribtionArr[selectedIndex]
+            ">
+            <button class="payment-btn" (click)="
+                addSubcription(subscribtionArr[selectedIndex], selectedIndex)
+              " *ngIf="!couponpageShow">
+              Subscribe Now
+            </button>
+
+            <div *ngIf="couponpageShow">
+              <app-paymentpack [showCountry1]="showStateCountry" [stateDefault]="statGeographical"
+                (openTab1)="couponSwitch($event)" (sendValueToPayment)="successPaymentTab4($event)"
+                [subscriptionMonth]="monthToPayment" [razorPayKeyGet]="razorPayKey"
+                [subscriptionPrice]="subscribeInfo1"></app-paymentpack>
+            </div>
+          </div>
+
+          <!-- MOBILE VIEW -->
+          <div *ngIf="isMobileView">
+            <div class="mobile-card-details" *ngIf="selectedIndex !== -1 && subscribtionArr[selectedIndex]">
+              <ul>
+                <li class="card-text-1" [innerHTML]="
+                    subscribtionArr[selectedIndex].s_package.description
+                  "></li>
+              </ul>
+              <!-- <button class="payment-btn" (click)="addSubcription(subscribtionArr[selectedIndex], selectedIndex)">
+                Subscribe Now
+              </button> -->
+            </div>
+
+            <div class="mobile-cards">
+              <div class="col-5 card-main" *ngFor="let sub of subscribtionArr; let i = index">
+                <div class="card-1" (click)="onSelectionChange(sub, i)"
+                  [ngClass]="{ 'card-selected': selectedIndex === i }">
+                  <div class="circle" *ngIf="selectedIndex === i">
+                    <img src="assets/new_icons/tick-subscribe.png" alt="" />
+                  </div>
+                  <div class="card-body">
+                    <div class="pack-select">
+                      <h5 class="card-title-1">{{ sub.s_package.p_name }}</h5>
+                    </div>
+
+                    <h6 class="card-subtitle-1" *ngIf="sub.s_package.device_restriction == 1">
+                      {{ device_limit }}
+                    </h6>
+                    <h6 class="card-subtitle-1" *ngIf="sub.s_package.device_restriction != 1">
+                      {{ sub.s_package.device_restriction + " Devices" }}
+                    </h6>
+
+                    <div class="card-price" *ngIf="
+                        sub.s_package.discounted_price == 0.0 ||
+                        sub.s_package.discounted_price == ' '
+                      ">
+                      {{
+                      sub.s_package.p_currency + " " + sub.s_package.p_price
+                      }}
+                    </div>
+                    <div class="card-price" *ngIf="
+                        sub.s_package.discounted_price != 0.0 &&
+                        sub.s_package.discounted_price != ' '
+                      ">
+                      <span class="discountType">{{
+                        sub.s_package.p_currency + " " + sub.s_package.p_price
+                        }}</span>
+                      <span>{{
+                        sub.s_package.p_currency +
+                        " " +
+                        sub.s_package.discounted_price
+                        }}</span>
+                    </div>
+
+                    <div class="popular-plan" *ngIf="sub?.s_package?.recommend == '1'">
+                      <h5>Recommended</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="selectedIndex !== -1" class="text-center mt-3">
+              <button class="payment-btn" (click)="addSubcription(subscribtionArr[selectedIndex], selectedIndex)"
+                *ngIf="!couponpageShow">
+                Subscribe Now
+              </button>
+            </div>
+
+            <!-- </div> -->
+            <!-- </div -->
+
+            <!-- Mobile Payment Pack -->
+            <div *ngIf="couponpageShow">
+              <app-paymentpack [showCountry1]="showStateCountry" [stateDefault]="statGeographical"
+                (openTab1)="couponSwitch($event)" (sendValueToPayment)="successPaymentTab4($event)"
+                [subscriptionMonth]="monthToPayment" [razorPayKeyGet]="razorPayKey"
+                [subscriptionPrice]="subscribeInfo1"></app-paymentpack>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- === SIGNUP === -->
+      <ng-container *ngSwitchCase="2">
+        <div fxLayout="row" class="bg-p alt-p-4" fxLayout.md="column" fxLayout.xs="column" fxLayoutAlign="center center"
+          fxLayoutGap="10px">
+          <div fxFlex="30" fxFlex.sm="50" fxFlex.xs="100">
+            <app-signup (sendActiveButton)="sendToPayment($event)"></app-signup>
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- === COUPON PAYMENT === -->
+      <ng-container *ngSwitchCase="3">
+        <div fxLayout="row" class="bg-p alt-p-5" fxLayout.md="column" fxLayout.xs="column" fxLayoutAlign="center center"
+          fxLayoutGap="10px">
+          <div fxFlex="100">
+            <app-paymentpack [showCountry1]="showStateCountry" [stateDefault]="statGeographical"
+              (openTab1)="couponSwitch($event)" (sendValueToPayment)="successPaymentTab4($event)"
+              [subscriptionMonth]="monthToPayment" [razorPayKeyGet]="razorPayKey"
+              [subscriptionPrice]="subscribeInfo1"></app-paymentpack>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="4">
+        <app-start-watching></app-start-watching>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>

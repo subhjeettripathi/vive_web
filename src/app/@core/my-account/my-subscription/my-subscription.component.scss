@@ -1,0 +1,74 @@
+.head {
+    padding: 16px 0;
+    background: #4A4A4A 0% 0% no-repeat padding-box;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.left {
+    color: #B4B4B4;
+}
+h1{
+    font-size: 18px;
+}
+.card {
+    padding: 0px;
+    color: white;
+    border: none !important;
+    border-radius: 15px;
+    width: 40%;
+}
+
+.mat-divider {
+    border-top-color: #707070;
+}
+
+.mat-card-content {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+}
+
+#tick-img{
+    display: flex;
+    flex: auto !important;
+    width: 20%;
+}
+.mat-card-subtitle{
+    margin-bottom: 0;
+}
+
+.img-acts img{
+    width: 50px;
+    margin-left: 20px;
+    position: relative;
+    left: 25%;
+}
+// #discountType{
+//     text-decoration: line-through !important;
+
+// }
+
+.discountType {
+    display: inline-block;
+    position: relative;
+  }
+  .discountType::before {
+    content: '';
+    position: absolute;
+    left: -0.1em;
+    right: -0.1em;
+    top: 0.38em;
+    bottom: 0.38em;
+    background: linear-gradient(to left top, transparent 45.5%, currentColor 47.5%, currentColor 52.5%, transparent 54.5%);
+    pointer-events: none;
+  }
+.discountValue{
+    margin-left: 5px;
+}
+
+
+
+.account-child{
+    display: none !important;
+}

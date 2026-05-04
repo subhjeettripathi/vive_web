@@ -1,0 +1,69 @@
+.crown {
+    position: absolute;
+    right: 4%;
+    top:6%;
+    z-index: 9;
+}
+
+
+.crown img {
+    width: 22px;
+}
+
+.viewAllArrow {
+    display: none;
+    width: 6px;
+    color: #B4B4B4;
+}
+
+.free-icon {
+    position: absolute;
+    top: 16px;
+    left: 1px;
+}
+.containerContent {
+    p {
+        margin: 0px !important;
+    }
+}
+
+
+.alt-paddd{
+    width: 100%;
+    padding: 0 6px 25px 6px;
+}
+
+
+.continue-btn{
+    width: 100%;
+    padding: 10px 16px;
+    background: var(--theme-secondary-color);
+    color: var(--bs-white);
+    border-radius: 6px;
+    border: 0;
+    font-family: var(--theme-font-style);
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 18px;
+    text-align: center;
+}
+
+.font-continue{
+    font-size: 20px;
+}
+
+.cont-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.img-doc{
+    position: relative;
+}
+
+.play_cont{
+    width: 40px;
+}

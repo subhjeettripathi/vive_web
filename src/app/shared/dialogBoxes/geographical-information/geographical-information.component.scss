@@ -1,0 +1,27 @@
+
+
+.parental-control-content {
+
+    .parental-heading{
+        p{
+            font-size: 18px;
+            font-family: var(--theme-font-style) !important;
+            text-align: center;
+            color: #FFFFFF;
+        }
+    }
+ 
+}
+
+.submitBtn{
+    background-color: #bebebe;
+    padding: 30px;
+}
+.geographBtn {
+    width: 90%;
+    background-color: red;
+    padding: 15px;
+    border: none;
+    color: white;
+    border-radius: 4px;
+}

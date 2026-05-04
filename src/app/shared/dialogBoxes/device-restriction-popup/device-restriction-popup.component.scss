@@ -1,0 +1,136 @@
+
+.parental-control-content {
+    position: relative;
+    text-align: center;
+
+
+}
+
+.adulttHeading {
+    color: white;
+    font-size: 18px;
+    font-family: "GothamBold" !important;
+}
+
+.close-btn {
+    position: absolute;
+    top: -10px;
+    right: -12px;
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: white;
+}
+
+.btn-one {
+    color: #fff !important;
+    background-color: none !important;
+    /* border-color: #858585 !important; */
+    border: 1px solid #858585;
+    padding: 13px;
+    border-radius: 4px;
+    color: white;
+    background-color: transparent;
+    font-size: 19px;
+    width: 100%;
+}
+
+
+.devices {
+      background: transparent;
+    padding: 20px;
+    margin: 20px 0px;
+    min-height: 95px;
+    border: var(--theme-popup-border);
+    max-height: 300px;
+    border-radius: 6px;
+    overflow-y: auto;
+}
+
+.devices::-webkit-scrollbar {
+    width: 6px;
+}
+ 
+.devices::-webkit-scrollbar-track {
+    background-color: #ebebeb;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.devices::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 4px;
+    background: #6d6d6d; 
+}
+
+.devices-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cancel-btn button{
+       color: var(--white) !important;
+    background-color: transparent !important;
+    border: var(--theme-popup-border);
+    padding: 12px;
+    border-radius: 4px;
+    width: 100%;
+    font-size: 14px;
+    font-family: var(--theme-font-style) !important;
+    transition: all 0.3s ease;
+}
+
+.log-btn {
+    border: 0;
+    background: transparent;
+    color: var(--theme-secondary-color);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 21px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.devices-name {
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 27px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+.clear-btn button{
+        color: var(--white) !important;
+        margin-bottom: 12px;
+    background-color: var(--theme-secondary-color) !important;
+    border: var(--theme-popup-border);
+    padding: 12px;
+    border-radius: 4px;
+    width: 100%;
+    font-size: 14px;
+    font-family: var(--theme-font-style) !important;
+    transition: all 0.3s ease;
+}
+
+.device-time{
+    font-size: 12px;
+    font-weight: 400;
+    color: #ffff;
+    opacity: 0.7;
+}
+.time-log {
+    color: #7F7F7F;
+    //styleName: Poppins -medium-16;
+    font-family: "PoppinsMedium";
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.devices-loop{
+   margin: 10px 0px;
+}

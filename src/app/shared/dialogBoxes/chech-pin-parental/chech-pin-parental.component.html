@@ -1,0 +1,27 @@
+<div fxLayout="column" fxLayoutGap="10px">
+    <div class="parental-control-content">
+        <div class="alt-login-img" *ngIf="baseJson.verify_parental.logo.is_allow == 1">
+            <img src="{{baseJson.verify_parental.logo.web}}" alt="vive" class="vive-img">
+        </div>
+        <span class="close-btn">
+            <img (click)="close()" src="assets/arrows_icons/VectorClose.svg" alt="">
+        </span>
+        <div class="parental-heading-1">
+            <p *ngIf="baseJson.verify_parental.heading.is_allow == 1">
+                {{baseJson.verify_parental.heading.text}}
+            </p>
+            <div class="pop-mastii">
+                <ng-otp-input class="check-pin-parental" type="tel" inputmode="numeric" id="password"
+                    (keydown)="mobileOnly($event)" autocomplete="off"
+                    *ngIf="baseJson.verify_parental.pin_field.is_allow == 1" #ngMobileOtpInput #ngOtpInput
+                    [formCtrl]="otpInputCurrent" (onInputChange)="onOtpChange($event)" [config]="config">
+                </ng-otp-input>
+                <br>
+                <p class="pop-mastii-error" *ngIf="show">{{incorrectPinMsg}}</p>
+            </div>
+            <span class="resetPin" *ngIf="baseJson.verify_parental.reset_btn.is_allow == 1">
+                <a (click)="resetPin()"> {{baseJson.verify_parental.reset_btn.text}}</a>
+            </span>
+        </div>
+    </div>
+</div>

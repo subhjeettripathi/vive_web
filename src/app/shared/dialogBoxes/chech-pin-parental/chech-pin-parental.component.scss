@@ -1,0 +1,66 @@
+
+::ng-deep .otp-input {
+    border-bottom: 2px solid #c5c5c5 !important;
+    // outline: none !important;
+    // font-size: 40px !important;
+    // width: 65px !important;
+    // height: 85px !important;
+    // background-color: #3D3D3D;
+}
+.parental-control-content {
+  
+
+    .parental-heading{
+        p{
+            font-size: 18px;
+            font-family: var(--theme-font-style) !important;
+            text-align: center;
+            color: #FFFFFF;
+        }
+    }
+
+
+   
+
+    .parental-heading-1{
+        p{
+            font-size: 16px;
+            font-family: var(--theme-font-style) !important;
+            text-align: center;
+            color: white;
+
+        }
+        .otp-form{
+        text-align: center;
+   
+
+    }
+}
+}
+
+.submitBtn{
+    background-color: red;
+    width: 76%;
+    color: white;
+    /* padding: 33px; */
+    border: none;
+}
+
+
+
+
+.resetPin{
+    color: white;
+
+    a{
+        border-bottom:1px solid white !important;
+        cursor: pointer;
+    }
+}
+
+ng-otp-input{
+    filter: none !important;
+}
+#password{
+    -webkit-text-security: disc !important;
+  }

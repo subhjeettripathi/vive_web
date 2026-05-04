@@ -1,0 +1,665 @@
+<div class="container-fluid">
+    <div class="details-wrapper sec-top">
+        <div class="row gradient">
+            <div class="col-xxl-4 col-xl-5 col-lg-6 grad-demo">
+                <div class="shows-header">
+                    <div fxLayout="row" fxLayoutAlign="space-between">
+                        <h2 class="font-36 headd" *ngIf="showData.is_group==0">
+                            <span class="mr-3 arrow-right detail-head-arrow">
+                                <img src="assets/svgs/Vector-back.svg" style="cursor: pointer;" (click)="back()"
+                                    alt="abc">
+                            </span>
+                        </h2>
+                        <h2 class="font-36 headd" *ngIf="showData.is_group==1">
+                            <span class="mr-3 arrow-right detail-head-arrow">
+                                <img src="assets/svgs/Vector-back.svg" style="cursor: pointer;" (click)="back()"
+                                    alt="abc">
+                            </span>
+                        </h2>
+
+
+                    </div>
+
+                </div>
+                <div class="parent-layout-detail">
+                    <h1 class="headd" *ngIf="showData.is_group==1">
+                        <!-- {{showData.series_title}} -->
+                        {{showData.episode_number}} {{ showData.title | truncate}}
+                    </h1>
+
+                    <h1 class="headd" *ngIf="showData.is_group==0">
+                        {{showData.title | truncate}}
+                    </h1>
+
+                    <!-- <div *ngIf="showData.is_group == 1" style="display: flex;gap:10px;">
+                        <ng-container *ngIf="showData.title; else noInput">
+                            <h3>{{showData.episode_number}} {{ showData.title}} </h3>
+                        </ng-container>
+                        <ng-template #noInput>
+                            <p></p>
+                        </ng-template>
+                    </div> -->
+                    <div class="details-title" fxLayout="row" fxLayoutGap="10">
+                        <div class="category" fxFlex.md="12" fxFlex.xs="12"
+                            *ngIf="showData.age_group!='' && showData.age_group!=null && navvar?.Others?.age_rating==1">
+                            <p *ngIf="showData.age_group != -1 && showData.age_group != 999">U/A {{showData.age_group}}+
+                            </p>
+                            <p *ngIf="showData.age_group == -1">A</p>
+                            <p *ngIf="showData.age_group == 999">U</p>
+                        </div>
+                        <div fxFlex.md="80" fxFlex.xs="80">
+                            <ul class="sub-details" *ngIf="showData?.meta!='' && showData?.meta!=null">
+                                <li>
+                                    <div class="duration" *ngIf="showData.is_live == 0">
+                                        <div class="dur_time">
+                                            <img decoding="async" src="/assets/vive/clock.svg" alt="Images">
+                                            {{showData.duration|timeDurationDetail}}
+                                        </div>
+                                    </div>
+                                </li>
+                                <li
+                                    *ngIf="showData?.meta?.year?.length != 0 && showData?.meta?.year != 0 && navvar?.Others?.year==1">
+                                    {{showData?.meta?.year | date:'y'}}</li>
+                                <li class="link"
+                                    *ngIf="showData?.meta?.language?.length != 0 && navvar?.Others?.language==1">
+                                    {{showData.meta.language}}</li>
+                                <li class="link" *ngIf="showData?.meta?.genre!= '' && navvar?.Others?.genre==1">
+                                    {{showData?.meta?.genre.split(',')[0]}}</li>
+                                <li class="link"
+                                    *ngIf="showData?.meta?.genre != '' && showData.meta.genre.split(',')[1]!= undefined && navvar?.Others?.genre==1">
+                                    {{showData?.meta?.genre.split(',')[1]}}</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class="details-description1">
+                        <span class="det">
+                            <p [ngClass]="{'limitTextHeight': isReadMore}">
+                                <span *ngIf="showData.is_group==0">{{showData.des}}</span>
+                                <span *ngIf="showData.is_group==1">{{showData.season_des}}</span>
+                                <!-- <span *ngIf="isSubsInfo == 1">
+                                    {{showData.des}}
+                                </span>
+
+                                <span
+                                    *ngIf="isSubsInfo != 1 && showData.access_type == 'free' && this.showData.is_group == 1">
+                                    {{showData.des}}
+                                </span>
+
+                                <span
+                                    *ngIf="isSubsInfo != 1 && showData.access_type == 'free' && this.showData.is_group == 0">
+                                    {{showData.des}}
+                                </span>
+
+                                <span
+                                    *ngIf="isSubsInfo != 1 && showData.access_type == 'paid' && this.showData.is_group == 1">
+                                    {{showData.season_des}}
+                                </span>
+
+                                <span
+                                    *ngIf="isSubsInfo != 1 && showData.access_type == 'paid' && this.showData.is_group == 0">
+                                    {{showData.des}}
+                                </span> -->
+
+                                <ng-container *ngIf="isPageLoaded">
+                                    <span
+                                        *ngIf="showData?.meta!='' && showData?.meta!=null && showData?.meta?.star_cast!=''">
+                                        <p style="color: white; margin-top: 10px !important;"
+                                            *ngIf="showData?.meta?.star_cast!=''">
+                                            Cast: <span class="text-1">{{showData?.meta?.star_cast}}</span>
+                                        </p>
+                                        <p style="color: white;  margin-top: 10px !important;"
+                                            *ngIf="showData?.meta?.director!=''">
+                                            Directors: <span class="text-1">{{showData?.meta?.director}}</span>
+                                        </p>
+                                        <p style="color: white;  margin-top: 10px !important;"
+                                            *ngIf="showData.short_desc!=''">
+                                            <span class="text-1">{{showData.short_desc}}</span>
+                                        </p>
+                                        <p *ngIf="showData.content_advisory"
+                                            style="color: white;  margin-top: 10px !important;">
+                                            Content Advisory: <span class="text-1">{{showData.content_advisory}}</span>
+                                        </p>
+                                    </span>
+
+                                    <p style="color: white;" *ngIf="showData.context">
+                                        Context: <span class="text-1">{{showData.context}}</span>
+                                    </p>
+                                    <p *ngIf="showData.theme" style="color: white;">
+                                        Theme: <span class="text-1">{{showData.theme}}</span>
+
+                                    </p>
+                                    <p *ngIf="showData.impact" style="color: white;">
+                                        Tone and Impact: <span class="text-1">{{showData.impact}}</span>
+                                    </p>
+                                    <p *ngIf="showData.target_audience" style="color: white;">
+                                        Target Audience: <span class="text-1">{{showData.target_audience}}</span>
+                                    </p>
+
+
+                                </ng-container>
+
+                            </p>
+                            <!-- <a onMouseOver="this.style.color='#FF0032'" onMouseOut="this.style.color='white'"
+                                style="cursor: pointer;color: white;text-decoration: underline;" (click)="showText()">
+                                {{ isReadMore ? 'Read More': 'Read Less' }}
+                            </a> -->
+
+                        </span>
+
+
+                    </div>
+
+
+                    <div class="details-description" style="overflow-y: scroll; ">
+
+
+                        <span>
+                            <span *ngIf="showData.is_group==0">{{showData.des}}</span>
+                            <span *ngIf="showData.is_group==1">{{showData.season_des}}</span>
+                            <!-- <p *ngIf="isSubsInfo == 1">
+                                {{showData.des}}
+                    
+                            </p>
+
+                            <p *ngIf="isSubsInfo != 1 && showData.access_type == 'free' && this.showData.is_group == 1">
+                                {{showData.des}}
+                            
+                            </p>
+
+                            <p *ngIf="isSubsInfo != 1 && showData.access_type == 'free' && this.showData.is_group == 0">
+                                {{showData.des}}
+                          
+                            </p>
+
+                            <p *ngIf="isSubsInfo != 1 && showData.access_type == 'paid' && this.showData.is_group == 1">
+                                {{showData.season_des}}
+                  
+                            </p>
+
+                            <p *ngIf="isSubsInfo != 1 && showData.access_type == 'paid' && this.showData.is_group == 0">
+                                {{showData.des}}
+                    
+                            </p> -->
+
+
+
+                            <ng-container class="main-read" *ngIf="isPageLoaded">
+
+                                <p style="color: white; margin-top: 10px !important;"
+                                    *ngIf="showData?.meta?.star_cast!=''">
+                                    Cast: <span class="text-1">{{showData?.meta?.star_cast}}</span>
+                                </p>
+                                <p style="color: white; margin-top: 10px !important;"
+                                    *ngIf="showData?.meta?.director!=''">
+                                    Directors: <span class="text-1">{{showData?.meta?.director}}</span>
+                                </p>
+                                <p style="color: white; margin-top: 10px !important;" *ngIf="showData.short_desc!=''">
+                                    <span class="text-1">{{showData.short_desc}}</span>
+                                </p>
+                                <p *ngIf="showData.content_advisory" style="color: white; margin-top: 10px !important;">
+                                    Content Advisory: <span class="text-1">{{showData.content_advisory}}</span>
+                                </p>
+
+                            </ng-container>
+
+                        </span>
+                    </div>
+                    <!-- <div class="subscribe-btn" *ngIf="isSubsInfo != 1">
+                        <button (click)="goToSubscribe()">Subscribe Now</button>
+                    </div> -->
+                    <!-- <br> -->
+                    <div class="details-button" *ngIf="isPageLoaded">
+                        <ul class="sub-details">
+                            <li>
+                                <button class="play-btn-aol" (click)="playvideo(showData,showData.age_group)">
+                                    <img src="assets/vive/play.svg" alt="Play button" style="cursor: pointer" />
+                                    <div>
+                                        Play
+                                    </div>
+
+                                </button>
+                            </li>
+                            <div class="icon-flex">
+
+                                <li class="watchlist" style="cursor: pointer;"
+                                    (click)="addRemoveToWatchlist((userContentDescription.behaviour.favorite==0)?1:0,showData.category_ids[0],showData.categories,showData)">
+                                    <div *ngIf="(userContentDescription?.behaviour.favorite==0)">
+                                        <div class="tooltip-container">
+                                            <img src="assets/vive/add-square.svg" alt="Add to Watchlist" width="30px">
+                                            <span class="tooltip-text">Add to Watchlist</span>
+                                        </div>
+                                    </div>
+
+                                    <button class="added-btnn" *ngIf="(userContentDescription?.behaviour.favorite==1)">
+                                        <img src="assets/vive/tick-square.svg" width="30px" alt="">
+                                        Added to Watchlist
+                                    </button>
+
+                                </li>
+
+                                <li *ngIf="showData.is_live == 0" class="shared">
+                                    <a role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <div class="tooltip-container">
+                                            <img src="/assets/vive/share.svg" width="30px" class="share-masti"
+                                                alt="Share button">
+                                            <span class="tooltip-text">Share</span>
+                                        </div>
+                                        <!-- <img src="assets/svgs/Group 6824.svg" class=""
+                                            alt="Share button"> -->
+
+
+                                    </a>
+                                    <!-- <div class="hide2">Share</div> -->
+                                    <div class="dropdown-menu dropMenu" id="social-share-toll"
+                                        aria-labelledby="dropdownMenuLink">
+                                        <div class="row m-0">
+                                            <div class="col-6 pl-2 pr-2">
+                                                <a (click)="sharing('fb',showData.share_url)" class="fb"><img
+                                                        src="assets/svgs/facebook.svg" alt="vive"></a>
+                                            </div>
+                                            <div class="col-6 pl-2 pr-2">
+                                                <a (click)="sharing('tweet',showData.share_url)"><img
+                                                        src="assets/img/twitter.svg" alt="vive" class="twitter1"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="shared trailerPlayBtn trailer_web" *ngIf="showData.trailer_url != ''">
+
+
+                                    <a role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <div class="tooltip-container">
+                                            <img src="/assets/vive/play.svg" width="30px" class="share-masti"
+                                                (click)="playtrailor(showData)" alt="Share button">
+                                            <span class="tooltip-text">Trailer</span>
+                                        </div>
+                                        <!-- <img src="assets/svgs/Group 6824.svg" class=""
+                                                alt="Share button"> -->
+
+
+                                    </a>
+
+
+                                </li>
+
+                                <!-- <li class="shared trailerPlayBtn trailer_response" *ngIf="showData.trailer_url != ''">
+                                    <a role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        <img src="assets/svgs/plyr-normal.svg" class="trailerRemove"
+                                            (click)="playtrailor(showData)" alt="Share button"
+                                            style="width: 35px; height: 35px;">
+                                        <img src="assets/svgs/plyr-hover.svg" class="trailerHoverRemove"
+                                            (click)="playtrailor(showData)" alt="Share button"
+                                            style="width: 35px; height: 35px;">
+
+                                    </a>
+
+                                </li> -->
+                            </div>
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-xxl-12 col-xl-7 col-lg-6 detail-s">
+                <span class="mr-3 arrow-right detail-head-arrow-moble">
+                    <img src="assets/svgs/Vector-back.svg" style="cursor: pointer;" (click)="back()" alt="abc">
+                </span>
+                <div class="grad-left">
+
+                </div>
+                <div class="grad-bttm">
+
+                </div>
+                <div class="grad-top">
+
+                </div>
+                <div *ngIf="getBrowserName == 'safari'">
+                    <img [src]="bannerImg" width="100%" height="100%" alt="">
+                </div>
+
+                <div *ngIf="getBrowserName != 'safari' && this.showData?.id != ''">
+                    <app-video-ls-player [ageGroup]="agegroup" [videourl]="trailerurl" [poster]="bannerImg"
+                        [alldata]="maindata" (setShowdetailData)="setShowData($event)"></app-video-ls-player>
+                </div>
+
+                <!-- <app-video-ls-player [ageGroup]="agegroup" [videourl]="trailerurl" [poster]="bannerImg"
+                    [alldata]="maindata" (setShowdetailData)="setShowData($event)"></app-video-ls-player> -->
+            </div>
+        </div>
+    </div>
+
+    <div class="episodes-wrapper" *ngIf="showData.is_group==1 && showData.groupInfo!=null" id="main-content">
+
+        <div class="row">
+            <div class="col-xl-6 col-sm-12">
+
+                <div class="epis-menu">
+                    <h2 class="m-0 epsd-show"> Episodes </h2>
+                    <!-- <span class="disable-arrow">
+                        <ng-select *ngIf="seasonData.length<2" [(ngModel)]="selected" [searchable]="false"
+                            [clearable]="false" [disabled]="true">
+                            <ng-option *ngFor="let x of seasonData" [value]="x.id">{{x.title}}</ng-option>
+                        </ng-select>
+                    </span> -->
+                    <span *ngIf="seasonData.length>=2">
+                        <ng-select class="select" [(ngModel)]="selected" [searchable]="false" [clearable]="false"
+                            (change)="getData2($event)">
+                            <ng-option *ngFor="let x of seasonData" [value]="x.id">{{x.title}}</ng-option>
+                        </ng-select>
+                    </span>
+                    <span *ngIf="seasonData.length>=1 && totalEpisodes>10">
+                        <ng-select *ngIf="episodesArray.length" [(ngModel)]="selectedEpisode" [clearable]="false"
+                            [searchable]="false" (change)="getEpisodeData($event)">
+                            <ng-option *ngFor="let x of episodesArray" [value]="x.offset">{{x.long_title}}</ng-option>
+                        </ng-select>
+
+                    </span>
+
+                </div>
+            </div>
+
+
+            <div class="col-xl-6 col-sm-12">
+                <div class="gap-content">
+                    <div class="view-all">
+                        <h2 class="m-0 epsd-hide"> Episodes </h2>
+                        <span class="gapp-views">
+                            <a [routerLink]="'/all-episodes'" [queryParams]="{ id: contentId }" (click)="getepisodeid()"
+                                class="see">See All</a>
+                            <!-- <mat-icon class="viewAllArrow" aria-hidden="false" svgIcon="viewArrow"></mat-icon> -->
+                        </span>
+                    </div>
+                    <span class="gapp-views-2">
+                        <a [routerLink]="'/all-episodes'" [queryParams]="{ id: contentId }" (click)="getepisodeid()"
+                            class="see">See All</a>
+                        <!-- <mat-icon class="viewAllArrow" aria-hidden="false" svgIcon="viewArrow"></mat-icon> -->
+                    </span>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div class="slick-card-carousel slick-card-padding" *ngIf="showData.is_group==1 && showData.groupInfo!=null">
+        <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="config">
+            <mat-card style="cursor: pointer;" ngxSlickItem class="card-slide"
+                *ngFor="let data of seasonSelectData;let i = index">
+                <!-- <img class="mySlides" [ngStyle]="{'border-radius':data.type=='circle'?'50%':'18px'}"
+                    [src]="data.sliderImg" (error)="onImgError($event,'rectangle_16x9')" alt="vive" width="100%"> -->
+
+                <a>
+                    <img class="mySlides" [ngStyle]="{'border-radius':data.type=='circle'?'50%':'10px'}"
+                        [src]="data.sliderImg" (error)="onImgError($event,'rectangle_16x9')"
+                        [alt]="data.series_title + ' ' + data.season_title + ' - '+data.title"
+                        [title]="data.series_title + ' ' + data.season_title + ' - '+data.title" width="100%"
+                        (click)="EpisodeNavigation(data)">
+                </a>
+
+                <!-- <mat-icon *ngIf="data.access_type=='paid' " class="crown" aria-hidden="false"
+                    svgIcon="crown"></mat-icon> -->
+                <!-- <div class="crown" *ngIf="data.access_type=='paid' && data.is_ad!=1"> <img src="assets/svgs/crown.svg"
+                        alt="vive">
+                </div>
+                <div class="free-icon" *ngIf="data.access_type=='free' && data.is_ad!=1"> <img
+                        src="assets/svgs/Group 5070.svg" alt="vive"> </div> -->
+                <div *ngIf="data.access_type == 'paid' && data?.type != 'circle' && !isSubscribed" class="crown">
+                    <img [src]="this.crownImg" alt="vive" loading="lazy" />
+                </div>
+                <!-- <div class="free-icon" *ngIf="data.access_type == 'free' && data?.type != 'circle' && !isSubscribed">
+                    <img src="assets/icons/FreeIcon.svg" alt="vive" loading="lazy" />
+                </div> -->
+                <div *ngIf="data.is_live == '1' && data?.type != 'circle'" class="live-icon">
+                    <img src="assets/new_icons/icon_live.svg" alt="">
+                </div>
+
+                <div class="containerContent" *ngIf="data.is_ad!=1">
+                    <div class="content">
+                        <p class="font-14 t-white">
+                            {{(data.season_number.length == 0 || data.season_number == 'S0' ) ? " " :
+                            data.season_number}} {{(data.episode_number.length == 0 || data.episode_number == 'E0') ? ''
+                            : data.episode_number }} {{data.season_number.length == 0 || data.episode_number.length == 0
+                            ? ' ': ':' }} {{data.episode_number.length == 0 && data.season_number != 0 &&
+                            data.season_number != 'S0' ? ":": " "}} {{data.title.length
+                            <= 35? data.title.slice(0,35) : data.title.slice(0,35) + "..." }}</p>
+
+                    </div>
+
+                    <p class="t-y font-12" *ngIf="data.age_group != -1 && data.age_group != 999">
+                        {{data.duration.slice(3,5)}}m <span
+                            *ngIf="data.year!= 0 && data.year!= null  && navvar?.Others?.year==1">| {{data.year}}
+                        </span><span *ngIf="navvar?.Others?.age_rating==1"> | U/A {{data.age_group}}+</span></p>
+                    <p class="t-y font-12" *ngIf="data.age_group == 999">{{data.duration.slice(3,5)}}m <span
+                            *ngIf="data.year!= 0 && data.year!= null  && navvar?.Others?.year==1">| {{data.year}}</span>
+                        <span *ngIf="navvar?.Others?.age_rating==1">| U</span>
+                    </p>
+                    <p class="t-y font-12" *ngIf="data.age_group == -1">{{data.duration.slice(3,5)}}m <span
+                            *ngIf="data.year!= 0 && data.year!= null  && navvar?.Others?.year==1">| {{data.year}}
+                        </span>
+                        <span *ngIf="navvar?.Others?.age_rating==1">| A </span>
+                    </p>
+                    <p class="font-14 subtitle" *ngIf="data.des!=''">{{data.des.substring(0,50) + '...'}}
+                    </p>
+
+                </div>
+            </mat-card>
+        </ngx-slick-carousel>
+        <p *ngIf="!seasonSelectData.length">NO DATA FOUND</p>
+    </div>
+
+    <div class="slick-card-carousel-1  slick-card-padding" style="margin-top: 50px;"
+        *ngIf="showData.is_group==1 && trailerData.length">
+        <div class="show-sub-category">Trailers</div>
+        <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="config">
+            <mat-card style="cursor: pointer;" ngxSlickItem class="card-slide" *ngFor="let data of trailerData"
+                (click)="playvideo(data,data.age_group)">
+                <!-- <img class="mySlides" [ngStyle]="{'border-radius':data.type=='circle'?'50%':'18px'}"
+                    [src]="data.sliderImg" (error)="onImgError($event,'rectangle_16x9')" alt="vive" width="100%"> -->
+
+                <a [href]="data.permalink" *ngIf="data.is_group == 1" (click)="onAnchorClick($event)">
+                    <img class="mySlides" [ngStyle]="{'border-radius':data.type=='circle'?'50%':'10px'}"
+                        [src]="data.sliderImg" (error)="onImgError($event,'rectangle_16x9')"
+                        [alt]="data.series_title + ' ' + data.season_title"
+                        [title]="data.series_title + ' ' + data.season_title" width="100%">
+                </a>
+
+                <a [href]="data.permalink" *ngIf="data.is_group == 0" (click)="onAnchorClick($event)">
+                    <img class="mySlides" [ngStyle]="{'border-radius':data.type=='circle'?'50%':'10px'}"
+                        [src]="data.sliderImg" (error)="onImgError($event,'rectangle_16x9')" [alt]="data.title"
+                        [title]="data.title" width="100%">
+                </a>
+
+                <!-- <mat-icon *ngIf="data.access_type=='paid' " class="crown" aria-hidden="false" svgIcon="crown">
+                </mat-icon>
+                <div class="free-icon" *ngIf="data.access_type=='free' "> <img src="assets/svgs/free.svg" alt="vive">
+                </div> -->
+                <div *ngIf="data.access_type == 'paid' && data?.type != 'circle' && !isSubscribed" class="crown">
+                    <img [src]="this.crownImg" alt="vive" loading="lazy" />
+                </div>
+                <!-- <div class="free-icon" *ngIf="data.access_type == 'free' && data?.type != 'circle' && !isSubscribed">
+                    <img src="assets/icons/FreeIcon.svg" alt="vive" loading="lazy" />
+                </div> -->
+                <div *ngIf="data.is_live == '1' && data?.type != 'circle'" class="live-icon">
+                    <img src="assets/new_icons/icon_live.svg" alt="">
+                </div>
+            </mat-card>
+        </ngx-slick-carousel>
+    </div>
+
+    <div class="custom_banner" style="text-align: center; cursor: pointer;margin-top: 30px;"
+        *ngIf="bannerData && this.navvar?.App[0]?.details_banner?.is_allow == 1 && this.navvar?.App[0]?.details_banner?.device_allow?.web == 1">
+        <a [href]="bannerData.link" target="_blank" (click)="onCustomBanner(bannerData.web)">
+            <img class="me" [src]="bannerData.web" (error)="onImgError($event,'rectangle_16x9')" alt="vive" />
+        </a>
+    </div>
+
+    <!-- <div class="custom_banner" style="text-align: center; cursor: pointer;margin-top: 50px;" *ngIf="bannerData && isSubsInfo != 1">
+        <a [href]="bannerData.link">
+            <img class="me" [src]="bannerData.web" (error)="onImgError($event,'rectangle_16x9')" alt="vive" />
+        </a>
+    </div> -->
+
+
+    <div class="slick-card-carousel-1  slick-card-padding" style="margin-top: 50px;"
+        *ngIf="showData.is_group==1 && extrasData.length">
+        <div class="show-sub-category">Extras</div>
+        <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="config">
+            <mat-card style="cursor: pointer;" ngxSlickItem class="card-slide" *ngFor="let data of extrasData"
+                (click)="playvideo(data,data.age_group)">
+                <!-- <img class="mySlides" [ngStyle]="{'border-radius':data.type=='circle'?'50%':'18px'}"
+                    [src]="data.sliderImg" (error)="onImgError($event,'rectangle_16x9')" alt="vive" width="100%"> -->
+
+                <a [href]="data.permalink" *ngIf="data.is_group == 1" (click)="onAnchorClick($event)">
+                    <img class="mySlides" [ngStyle]="{'border-radius':data.type=='circle'?'50%':'10px'}"
+                        [src]="data.sliderImg" (error)="onImgError($event,'rectangle_16x9')"
+                        [alt]="data.series_title + ' ' + data.season_title"
+                        [title]="data.series_title + ' ' + data.season_title" width="100%">
+                </a>
+
+                <a [href]="data.permalink" *ngIf="data.is_group == 0" (click)="onAnchorClick($event)">
+                    <img class="mySlides" [ngStyle]="{'border-radius':data.type=='circle'?'50%':'10px'}"
+                        [src]="data.sliderImg" (error)="onImgError($event,'rectangle_16x9')" [alt]="data.title"
+                        [title]="data.title" width="100%">
+                </a>
+                <!-- <mat-icon *ngIf="data.access_type=='paid' " class="crown" aria-hidden="false" svgIcon="crown">
+                </mat-icon>
+                <div class="free-icon" *ngIf="data.access_type=='free' "> <img src="assets/svgs/free.svg" alt="vive">
+                </div> -->
+                <div *ngIf="data.access_type == 'paid' && data?.type != 'circle' && !isSubscribed" class="crown">
+                    <img [src]="this.crownImg" alt="vive" loading="lazy" />
+                </div>
+                <!-- <div class="free-icon" *ngIf="data.access_type == 'free' && data?.type != 'circle' && !isSubscribed">
+                    <img src="assets/icons/FreeIcon.svg" alt="vive" loading="lazy" />
+                </div> -->
+                <div *ngIf="data.is_live == '1' && data?.type != 'circle'" class="live-icon">
+                    <img src="assets/new_icons/icon_live.svg" alt="">
+                </div>
+            </mat-card>
+        </ngx-slick-carousel>
+    </div>
+
+    <div class="slick-card-carousel-1 slick-card-padding" style="margin-top: 50px;"
+        *ngIf="showData.is_group==1 && reviewData.length">
+        <div class="show-sub-category">Reviews</div>
+        <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="config">
+            <mat-card style="cursor: pointer;" ngxSlickItem class="card-slide" *ngFor="let data of reviewData"
+                (click)="playvideo(data,data.age_group)">
+
+                <!-- <img class="mySlides" [ngStyle]="{'border-radius':data.type=='circle'?'50%':'18px'}"
+                    [src]="data.sliderImg" (error)="onImgError($event,'rectangle_16x9')" alt="vive" width="100%"> -->
+
+                <a [href]="data.permalink" *ngIf="data.is_group == 1" (click)="onAnchorClick($event)">
+                    <img class="mySlides" [ngStyle]="{'border-radius':data.type=='circle'?'50%':'10px'}"
+                        [src]="data.sliderImg" (error)="onImgError($event,'rectangle_16x9')"
+                        [alt]="data.series_title + ' ' + data.season_title"
+                        [title]="data.series_title + ' ' + data.season_title" width="100%">
+                </a>
+
+                <a [href]="data.permalink" *ngIf="data.is_group == 0" (click)="onAnchorClick($event)">
+                    <img class="mySlides" [ngStyle]="{'border-radius':data.type=='circle'?'50%':'10px'}"
+                        [src]="data.sliderImg" (error)="onImgError($event,'rectangle_16x9')" [alt]="data.title"
+                        [title]="data.title" width="100%">
+                </a>
+                <!-- <mat-icon *ngIf="data.access_type=='paid' " class="crown" aria-hidden="false" svgIcon="crown">
+                </mat-icon>
+                <div class="free-icon" *ngIf="data.access_type=='free' "> <img src="assets/svgs/free.svg" alt="vive">
+                </div> -->
+                <div *ngIf="data.access_type == 'paid' && data?.type != 'circle' && !isSubscribed" class="crown">
+                    <img [src]="this.crownImg" alt="vive" loading="lazy" />
+                </div>
+                <!-- <div class="free-icon" *ngIf="data.access_type == 'free' && data?.type != 'circle' && !isSubscribed">
+                    <img src="assets/icons/FreeIcon.svg" alt="vive" loading="lazy" />
+                </div> -->
+                <div *ngIf="data.is_live == '1' && data?.type != 'circle'" class="live-icon">
+                    <img src="assets/new_icons/icon_live.svg" alt="">
+                </div>
+            </mat-card>
+        </ngx-slick-carousel>
+    </div>
+
+    <div class="starring-wrapper" style="margin-top: 50px; margin-bottom: 50px;"
+        *ngIf="showData?.meta!?.all_cast!=null &&showData?.meta!?.all_cast.length!=0">
+     
+        <div class="slick-card-carousel-1 slick-card-padding">
+            <div class="show-sub-category">Starring</div>
+            <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="cardCarousel">
+                <mat-card [ngStyle]="{'border-radius':'50%'}" (click)="showProfiles(actor)" style="cursor: pointer;"
+                    ngxSlickItem *ngFor="let actor of showData?.meta?.all_cast" class="card-slide">
+                    <div *ngIf="showData.is_group == 1">
+                        <img class="mySlides" style="border-radius: 50%;" [src]="actor.image"
+                            (error)="onImgError($event,'circle')"
+                            [alt]="actor.name + ' - ' + showData.series_title + ' ' + showData.season_title"
+                            [title]="actor.name + ' - ' + showData.series_title + ' ' + showData.season_title"
+                            width="100%"><br>
+                    </div>
+
+                    <div *ngIf="showData.is_group == 0">
+                        <img class="mySlides" style="border-radius: 50%;" [src]="actor.image"
+                            (error)="onImgError($event,'circle')" [alt]="actor.name + ' - ' + showData.title"
+                            [title]="actor.name + ' - ' + showData.title" width="100%"><br>
+                    </div>
+
+                    <div class="starring-title text-center">
+                        {{actor.name}}
+                    </div>
+                </mat-card>
+            </ngx-slick-carousel>
+        </div>
+    </div>
+
+    <div class="mb-5" *ngIf="detailData.length" style="margin-top: 50px;">
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="card-slider-header">
+            <div class="show-sub-category">Similar</div>
+        </div>
+        <div class="slick-card-carousel-1 slick-card-padding">
+            <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="similarCarousel">
+                <mat-card style="cursor: pointer;" ngxSlickItem class="card-slide" *ngFor="let data of detailData"
+                    [routerLink]="'/'+data.permalink" (click)="clearEpisode()">
+                    <!-- <mat-icon *ngIf="data.access_type=='paid' " class="crown" aria-hidden="false" svgIcon="crown">
+                    </mat-icon> -->
+                    <!-- <div class="crown" *ngIf="data.access_type=='paid'"> <img src="assets/svgs/crown.svg" alt="vive">
+                    </div>
+                    <div class="free-icon" *ngIf="data.access_type=='free'"> <img src="assets/svgs/free.svg" alt="vive">
+                    </div> -->
+                    <div *ngIf="data.access_type == 'paid' && data?.type != 'circle' && !isSubscribed" class="crown">
+                        <img [src]="this.crownImg" alt="vive" loading="lazy" />
+                    </div>
+                    <!-- <div class="free-icon"
+                        *ngIf="data.access_type == 'free' && data?.type != 'circle' && !isSubscribed">
+                        <img src="assets/icons/FreeIcon.svg" alt="vive" loading="lazy" />
+                    </div> -->
+                    <div *ngIf="data.is_live == '1' && data?.type != 'circle'" class="live-icon">
+                        <img src="assets/new_icons/icon_live.svg" alt="">
+                    </div>
+
+                    <!-- <img class="mySlides" [ngStyle]="{'border-radius':data.type=='circle'?'50%':'18px'}"
+                        [src]="data.sliderImg" (error)="onImgError($event,'vertical_9x16')" alt="vive" width="100%"> -->
+
+                    <a [href]="data.permalink" *ngIf="data.is_group == 1" (click)="onAnchorClick($event)">
+                        <img class="mySlides" [ngStyle]="{'border-radius':data.type=='circle'?'50%':'10px'}"
+                            [src]="data.sliderImg" (error)="onImgError($event,'rectangle_16x9')"
+                            [alt]="data.series_title + ' ' + data.season_title"
+                            [title]="data.series_title + ' ' + data.season_title" width="100%">
+                    </a>
+
+                    <a [href]="data.permalink" *ngIf="data.is_group == 0" (click)="onAnchorClick($event)">
+                        <img class="mySlides" [ngStyle]="{'border-radius':data.type=='circle'?'50%':'10px'}"
+                            [src]="data.sliderImg" (error)="onImgError($event,'rectangle_16x9')" [alt]="data.title"
+                            [title]="data.title" width="100%">
+                    </a>
+                    <div class="similar-title text-center">
+                        {{data.title}}
+                    </div>
+                </mat-card>
+            </ngx-slick-carousel>
+        </div>
+    </div>
+
+
+</div>

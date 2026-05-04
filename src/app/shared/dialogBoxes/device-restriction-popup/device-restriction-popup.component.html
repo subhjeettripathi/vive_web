@@ -1,0 +1,52 @@
+<div fxLayout="column" fxLayoutGap="10px">
+    <div class="parental-control-content">
+        <span class="img-logo" *ngIf="baseJson.deviceRestriction.logo.is_allow == 1">
+            <img src="{{baseJson.deviceRestriction.logo.web}}" alt="" class="vive-img">
+        </span>
+
+        <!-- <button (click)="close()" class="close-btn">
+            <img src="assets/arrows_icons/VectorClose.svg" alt="">
+        </button> -->
+        <div class="alt-login-img" *ngIf="baseJson.deviceRestriction.warning_icon.is_allow == 1">
+            <img src="{{baseJson.deviceRestriction.warning_icon.web}}" alt="">
+        </div>
+        <br>
+
+
+
+        <p style="font-size:14px;color: #DEDEDE;" *ngIf="baseJson.deviceRestriction.description.is_allow == 1">
+            {{baseJson.deviceRestriction.description.text}}
+            <br>
+            <span style="color: #6c6c6c;">Your current plan supports {{limit}} Devices only</span>
+        </p>
+
+
+        <div class="devices">
+            <!-- <div style="color: #fff;"> Log Out 1 Device to Continue</div> -->
+            <div class="devices-loop" *ngFor="let x of devices">
+                <div class="devices-list">
+                    <div class="device-details">
+                        <div class="devices-name">
+                            {{x.make_model}} {{x.device_type}} {{x.os}}
+                        </div>
+                        <div class="device-time">
+                            Last used : {{x.created | date:"d-MMM-y , h:mm a"}}
+                        </div>
+                    </div>
+
+                    <button class="log-btn" (click)="clearDevices(x)">Logout</button>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="clear-btn">
+            <button (click)="clearDevices('all')">Clear All</button>
+        </div>
+        <div class="cancel-btn">
+            <button (click)="close()">Cancel</button>
+        </div>
+
+
+    </div>
+</div>

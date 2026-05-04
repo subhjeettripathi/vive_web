@@ -1,0 +1,195 @@
+.search-icon {
+    //  margin-right: 1%;
+    opacity: 1 !important;
+    cursor: pointer;
+}
+
+
+// .cards{
+//     padding: 15px;
+// }
+
+.search-Input {
+    width: 470px;
+    height: 50px;
+    background: #DEDEDE 0% 0% no-repeat padding-box;
+    border: 1px solid #707070;
+    border-radius: 4px;
+    opacity: 1;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0px;
+    color: #1E1E1E;
+    text-transform: capitalize;
+    padding: 20px;
+
+}
+
+#search {
+    background-color: #2D2D2D;
+}
+
+.genreButtonShow {
+    border: 1px solid grey;
+    padding: 15px 50px;
+    font-weight: 900;
+    color: white;
+    border-radius: 6px;
+}
+
+.search-content {
+    margin-bottom: 20px;
+}
+
+#search:active {
+    background-color: #2D2D2D;
+}
+
+
+//   for remove input border-bottom:-
+::ng-deep .mat-form-field-underline {
+    display: none;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.popularSearch {
+    a {
+        // color: #9B9B9B;
+        font-size: 20px;
+        font-family: var(--theme-font-style);
+        cursor: pointer;
+
+    }
+
+    a:active {
+        font-weight: 600;
+        // color: #FFFFFF !important;
+    }
+
+}
+
+.searchField input::placeholder {
+    color: #F2F2F2 !important;
+    opacity: 50%;
+    font-size: 17px;
+    font-family: ManropeMedium;
+
+}
+
+
+.mat-form-field {
+    width: 470px !important;
+    font-size: inherit;
+    font-weight: 400;
+    line-height: 1.125;
+    font-family: normal normal medium 18px/13px Gotham HTF !important;
+    letter-spacing: normal;
+    // height: 50px !important;
+    justify-content: center;
+    margin: -6px 0px -6px 0px !important;
+    padding: -20px !important;
+    // margin-bottom: 10px !important;
+}
+
+
+.alt-p-3 {
+    position: relative;
+}
+
+
+
+
+
+#searchDiv {
+    cursor: pointer;
+}
+
+.noSearchResult {
+    display: flex;
+    justify-content: center;
+    font-size: xx-large;
+    font-family: var(--theme-font-style);
+    margin-top: 10%;
+}
+
+//   ::ng-deep .mat-form-field-infix {
+//     display: block;
+//     position: relative;
+//     flex: auto;
+//     min-width: 390px !important;
+//     padding: 0 !important;
+
+// }
+
+
+// .mat-form-field-infix {
+//     padding: 0px !important;
+//     // Throws off the baseline if we do it as a real margin, so we do it as a border instead.
+
+//   }
+
+
+@media only screen and (max-width:992px) {
+
+    .sec-top {
+        margin-top: 10px !important;
+        margin-left: 15px !important;
+        margin-right: 15px !important;
+    }
+
+    .genreButtonShow {
+        border: 1px solid grey;
+        padding: 10px 35px;
+        color: white;
+        border-radius: 6px;
+    }
+
+
+    // .free-icon img {
+    //     width: 40px !important;
+    // }
+
+    .crown img {
+        width: 18px !important;
+    }
+
+    .crown{
+        right:6% !important;
+        top: 3% !important;
+    }
+
+    .free-icon {
+        right: 8px !important;
+        top: 3px !important;
+    }
+
+    .free-icon img{
+      
+        width: 40px !important;
+    }
+}
+
+
+.crown {
+    position: absolute;
+    right: 4%;
+    top: 4%;
+}
+
+.crown img {
+    width: 26px;
+}
+
+.free-icon {
+    position: absolute;
+    right: 14px;
+    top: 14px;
+}
+
+// .free-icon img {
+//     width: 75px;
+// }

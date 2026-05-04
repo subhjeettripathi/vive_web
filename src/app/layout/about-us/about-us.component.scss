@@ -1,0 +1,71 @@
+.about{
+  font-weight: 100;
+  font-size: 14px;
+  text-align: justify;
+}
+
+
+// .poster-wrapper {
+//   width: 100%;
+//   display: flex;
+//   justify-content: center;
+//   top: 50%;
+//   height: 360px;
+//   // background: url(https://static.cloud.altbalaji.com/img/about_banner.png) no-repeat left top;
+//   background-size: cover;
+// }
+
+.poster-wrapper{
+  text-align: center;
+  margin: 40px 20px;  
+}
+
+.privacy-container{
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 100px;
+  font-weight: 100;
+  text-align: justify;
+}
+
+.bg{
+min-height:800px;
+}
+
+
+#iframe-content{
+    width: 100%;
+    height: 100%;
+}
+// .bg{
+//     height: 130vh;
+// }
+.site-content{
+    margin-top: 100px;
+    overflow: hidden;
+    border: none;
+    height:100vh;
+
+
+}
+.aboutus{
+    margin-top: 100px;
+    overflow: hidden !important;
+    border: none;
+    // height:110vh;
+}
+.site-content::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}
+@media only screen and (max-width:992px) {
+  .site-content{
+    margin-top: 100px;
+    overflow: hidden;
+    border: none;
+    height:100vh;
+  }
+
+
+
+}

@@ -1,0 +1,90 @@
+.example-card {
+  img {
+    // width: 100%;
+    height: auto;
+  }
+}
+
+.section-popular {
+  padding-top: 2%;
+  padding: 3px;
+}
+
+.alt-p-3 {
+  position: relative;
+}
+
+#searchDiv {
+  cursor: pointer;
+}
+
+.alt-p-3 {
+  padding: 8px;
+}
+
+.crown {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+}
+
+.crown img {
+  width: 22px;
+}
+
+.free-icon {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+}
+
+
+// .free-icon img {
+//   width: 50px;
+// }
+
+.live-icon {
+  position: absolute;
+  left: 8px;
+  top: 8px;
+}
+
+
+.live-icon img {
+  width: 50px;
+}
+
+.img-container{
+  position: relative;
+}
+
+
+@media screen and (max-width:992px) {
+  .free-icon img {
+    width: 35px !important;
+  }
+
+  .crown img {
+    width: 15px !important;
+  }
+
+  .free-icon {
+    right: 7px !important;
+    top: 2px !important;
+  }
+
+  .live-icon img {
+    width: 35px !important;
+  }
+
+  .live-icon {
+    left: 7px !important;
+    top: 2px !important;
+  }
+
+  .crown {
+    right: 3px !important;
+    top: -2px !important;
+
+  }
+}

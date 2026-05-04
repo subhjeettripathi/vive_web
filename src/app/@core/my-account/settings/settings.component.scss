@@ -1,0 +1,47 @@
+.section-setting {
+    padding: 25px 24px 16px;
+}
+
+.text-title,
+.text-restrict {
+    color: hsl(0, 0%, 71%);
+    font-size: 15px;
+    font-family: var(--theme-font-style) !important;
+    font-weight: 500;
+}
+
+.text-value {
+    color: #f2f2f2;
+    font-size: 15px;
+    cursor: pointer;
+    font-family: var(--theme-font-style) !important;
+    font-weight: 500;
+    /* replaces <br> */
+}
+
+.with-toggle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--theme-font-style);
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.slide-toggle {
+    margin-left: 8px;
+}
+
+/* Razor clean theme overrides */
+::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-bar,
+::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+    background-color: var(--theme-secondary-color) !important;
+}
+
+
+.setting-flex{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+}

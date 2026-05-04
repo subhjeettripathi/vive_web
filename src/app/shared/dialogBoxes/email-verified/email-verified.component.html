@@ -1,0 +1,24 @@
+<div fxLayout="column" fxLayoutGap="10px">
+    <div class="parental-control-content">
+        <span class="img-logo" *ngIf="basesignin.success_email_verify.logo.is_allow">
+            <img src="{{basesignin.success_email_verify.logo.web}}" alt="vive" class="vive-img">
+        </span>
+
+        <!-- <button (click)="close()" class="close-btn">
+            <img src="assets/arrows_icons/VectorClose.svg" alt="">
+        </button> -->
+        <div class="alt-login-img success-img" *ngIf="basesignin.success_email_verify.success_icon.is_allow">
+            <img src="{{basesignin.success_email_verify.success_icon.web}}" alt="vive" class="vive-img">
+        </div>
+        <p class="deleteSuccess" *ngIf="basesignin.success_email_verify.description.is_allow">
+            {{basesignin.success_email_verify.description.text}}
+        </p>
+        <div class="row mt-2">
+            <div class="col-12">
+                <button class="btn-one" (click)="close()">Ok</button>
+            </div>
+        </div>
+
+
+    </div>
+</div>

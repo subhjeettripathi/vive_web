@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <base href="/" />
+  <meta charset="utf-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+
+
+  <meta name="description"
+    content="Watch the latest web series, originals & movies in HD on Vive Movies. Enjoy Thriller, Action, Comedy, Romance, Drama & more in multiple languages." />
+  <meta name="robots" content="index, follow">
+  <meta name="keywords" content="movies online, web series, originals, Vive Movies">
+  <meta name="publisher" content="Vive Movies">
+  <link rel="canonical" href="https://www.vive.movie/" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.vive.movie/" />
+  <meta property="og:title" content="Movies, Web Series & Originals Streaming Online | Vive Movies" />
+  <meta property="og:description"
+    content="Watch the latest web series, originals & movies in HD on Vive Movies. Explore genres like Thriller, Action, Comedy, Romance & Drama & more." />
+  <meta property="og:image" content="https://static.creatorott.com/configration/5006/5006_683021cf06eb2.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Vive Movies" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Movies, Web Series & Originals Streaming Online | Vive Movies" />
+  <meta name="twitter:description"
+    content="Watch the latest web series, originals & movies in HD on Vive Movies. Explore genres like Thriller, Action, Comedy, Romance & Drama & more." />
+  <meta name="twitter:image" content="https://static.creatorott.com/configration/5006/5006_683021cf06eb2.png" />
+
+  <!-- Preload & Preconnect for Speed -->
+  <link rel="preload" href="assets/icons/favicon.ico" as="image" type="image/x-icon">
+  <link rel="preload" href="https://static.creatorott.com/configration/5006/5006_683021cf06eb2.png" as="image"
+    type="image/png">
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://connect.facebook.net">
+  <link rel="preconnect" href="https://static.creatorott.com">
+  <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://us.i.posthog.com">
+  <script src="https://us-assets.i.posthog.com/static/array.js" defer></script>
+  <link rel="preconnect" href="https://us-assets.i.posthog.com" crossorigin>
+  <link rel="preconnect" href="https://us.i.posthog.com" crossorigin>
+  <link rel="preconnect" href="https://vive-tv-9535a.firebaseapp.com" crossorigin>
+  <link rel="preconnect" href="https://www.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- ✅ Preconnect to font servers early -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- ✅ Preload the stylesheet, then apply it -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+
+  <!-- ✅ Fallback if JS is disabled -->
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
+  </noscript>
+
+  <script defer type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+    import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+
+    import { getMessaging, getToken, onMessage, deleteToken } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-messaging.js";
+    import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-analytics.js";
+
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAfNAUXkkp57KePt96VRfd3Va0ViqxTByM",
+      authDomain: "vive-tv-9535a.firebaseapp.com",
+      projectId: "vive-tv-9535a",
+      storageBucket: "vive-tv-9535a.firebasestorage.app",
+      messagingSenderId: "200062459341",
+      appId: "1:200062459341:web:481c47091e8acd10197884",
+      measurementId: "G-0GTF86KCVV"
+    };
+
+
+
+
+    const app = initializeApp(firebaseConfig);
+    console.log(app)
+
+    window.firebaseMessaging = getMessaging(app);
+    const analytics = getAnalytics(app);
+    window.firebaseAuth = getAuth(app);
+    window.GoogleAuthProvider = GoogleAuthProvider;
+
+    console.log(window.GoogleAuthProvider, "JKLKJHG")
+
+    window.signInWithPopup = signInWithPopup;
+    window.firebaseAnalytics = analytics;
+    window.firebaseLogEvent = logEvent; //
+
+    // const vapidKey = "BFqZ1tufwSyVYdc1EY3rnPTqnTgTLNjihZcqF-72hGaDR0pK_U7ujCWQxKu4CkprdNaJI84cl2BlXqFEnUWc61w";
+    const vapidKey = "BMom04Acgv1Tympp-WkoTS04HTJd5mJivfFpNQVh90nvT3NrQKnIpN2sShZIOBPRdNLK-jPcdfpSH-HJH7znIGI"
+
+    const getFcmToken = async () => {
+      try {
+        const messaging = window.firebaseMessaging;
+
+        const currentToken = await getToken(messaging, { vapidKey });
+        if (currentToken) {
+          await deleteToken(messaging);
+        }
+
+        const permission = await Notification.requestPermission();
+        if (permission === 'granted') {
+          const newToken = await getToken(messaging, { vapidKey });
+          if (newToken) {
+            console.log("✅ New FCM Token:", newToken);
+            localStorage.setItem("fcm_token", newToken);
+          } else {
+            console.warn("⚠️ No registration token available.");
+          }
+        } else {
+          console.warn("❌ Notification permission denied.");
+        }
+
+      } catch (err) {
+        console.error("❌ Error during FCM token handling:", err);
+      }
+    };
+
+    getFcmToken();
+
+    onMessage(window.firebaseMessaging, (payload) => {
+      console.log("📥 Foreground message received:", payload);
+      let data = payload?.data || {};
+
+      if (data.body) {
+        try {
+          const parsed = JSON.parse(data.body);
+          data = { ...data, ...parsed };
+        } catch (e) {
+          console.error("❌ Failed to parse body:", e);
+        }
+      }
+
+      if (data["trigger_action"] === "logout") {
+        window.postMessage({ type: 'FORCE_LOGOUT' }, '*');
+      }
+    });
+  </script>
+
+
+</head>
+
+<body>
+  <div id="fb-root"></div>
+  <div>
+    <app-root></app-root>
+  </div>
+
+  <!-- Scripts (all deferred to reduce CLS) -->
+  <script defer src="assets/script/video.min.js"></script>
+  <script async src="https://imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
+  <script defer src="assets/script/device-uuid.js"></script>
+  <script defer src="assets/script/appleid.auth.js"></script>
+
+  <!-- Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SKXFNPHEZH"></script>
+  <script defer>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("js", new Date());
+    gtag("config", "G-SKXFNPHEZH");
+  </script>
+
+  <!-- Posthog (Analytics) -->
+  <script defer>
+    !(function (t, e) {
+      var o, n, p, r;
+      e.__SV ||
+        ((window.posthog = e),
+          (e._i = []),
+          (e.init = function (i, s, a) {
+            function g(t, e) {
+              var o = e.split(".");
+              2 == o.length && ((t = t[o[0]]), (e = o[1])),
+                (t[e] = function () {
+                  t.push([e].concat(Array.prototype.slice.call(arguments, 0)));
+                });
+            }
+            ((p = t.createElement("script")).type = "text/javascript"),
+              (p.crossOrigin = "anonymous"),
+              (p.async = !0),
+              (p.src =
+                s.api_host.replace(".i.posthog.com", "-assets.i.posthog.com") +
+                "/static/array.js"),
+              (r = t.getElementsByTagName("script")[0]).parentNode.insertBefore(
+                p,
+                r
+              );
+            var u = e;
+            for (
+              void 0 !== a ? (u = e[a] = []) : (a = "posthog"),
+              u.people = u.people || [],
+              u.toString = function (t) {
+                var e = "posthog";
+                return "posthog" !== a && (e += "." + a), t || (e += " (stub)"), e;
+              },
+              u.people.toString = function () {
+                return u.toString(1) + ".people (stub)";
+              },
+              o = "init capture register identify reset alias".split(" "),
+              n = 0;
+              n < o.length;
+              n++
+            )
+              g(u, o[n]);
+            e._i.push([i, s, a]);
+          }),
+          (e.__SV = 1));
+    })(document, window.posthog || []);
+
+    posthog.init("phc_oofRYHxIvtcdn4hJQVRquLUYFFS9amgFe1yJ2dVxMSY", {
+      api_host: "https://us.i.posthog.com",
+    });
+  </script>
+
+  <!-- Facebook SDK + Pixel (lazy-loaded after page load) -->
+  <script>
+    window.addEventListener("load", function () {
+      (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, "script", "facebook-jssdk"));
+
+      window.fbAsyncInit = function () {
+        FB.init({
+          appId: "761925523141047",
+          cookie: true,
+          xfbml: true,
+          version: "v23.0"
+        });
+        FB.AppEvents.logPageView();
+      };
+
+      !function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n; n.loaded = !0; n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e); t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      }(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+
+      fbq("init", "2182203622256210");
+      fbq("track", "PageView");
+    });
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=2182203622256210&ev=PageView&noscript=1" />
+  </noscript>
+</body>
+
+</html>

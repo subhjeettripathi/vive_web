@@ -1,0 +1,33 @@
+<div fxLayout="column" fxLayoutGap="10px">
+    <div class="parental-control-content">
+        <span class="img-logo" *ngIf="basesignin.subtitle.logo.is_allow == 1">
+            <img src="{{basesignin.subtitle.logo.web}}" alt="vive" class="vive-img">
+        </span>
+
+        <button (click)="close()" class="close-btn">
+            <img src="assets/arrows_icons/VectorClose.svg" alt="">
+        </button>
+        <br><br>
+
+        <!-- <div>
+            <p style="    color: white;
+            font-size: 15px;">Select your preferred language</p>
+            <div class="subtitleContent">
+                <p (click)="subtitleSet('off')">off<span *ngIf="offShow"><img src="assets/svgs/tick.svg"></span></p>
+
+                <p (click)="subtitleSet('English')">English<span  *ngIf="englishShow"><img src="assets/svgs/tick.svg"></span></p>
+                <p (click)="subtitleSet('Hindi')">Hindi<span  *ngIf="hindiShow"><img src="assets/svgs/tick.svg"></span></p>
+
+            </div>
+         </div> -->
+        <div>
+            <p *ngIf="basesignin.subtitle.heading.is_allow == 1" style="color: white;
+            font-size: 15px;">{{basesignin.subtitle.heading.text}}</p>
+            <div class="subtitleContent">
+                <p *ngFor="let subtitle of subtitledata" (click)="subtitleSet(subtitle.text)">{{subtitle.text}}<span
+                        *ngIf="acc ==subtitle.text"><img src="assets/svgs/tick.svg" alt="vive"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

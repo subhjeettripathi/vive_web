@@ -1,0 +1,27 @@
+
+.adulttHeading{color: white;font-size: 18px;font-family: var(--theme-font-style) !important;}
+
+.regionalPara{
+    color: white;
+    font-size: 15px;
+}
+.subtitleContent p{
+    background-color: grey;
+    padding: 9px;
+    font-size: 17px;
+    text-align: start;
+    color: white;
+    img{
+        position:absolute;
+        right: 8px;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .subtitleContent p{
+        font-size: 13px;
+    }
+    .regionalPara{
+        color: white;
+        font-size: 12px;
+    }
+  }

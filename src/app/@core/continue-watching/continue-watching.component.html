@@ -1,0 +1,86 @@
+<div class="section-watchlist sec-top">
+    <div class="watchlist-header">
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <h1 class="font-36"><span class="mr-3 arrow-right" (click)="backToLocation()">
+                    <img src="assets/svgs/Vector-back.svg" style="cursor: pointer;" alt="vive">
+                </span>Continue Watching</h1>
+            <p><button *ngIf="dataList.length" class="continue-btn"
+                    (click)="clearContinueWatching()">Clear All</button></p>
+        </div>
+
+    </div>
+    <br>
+    <div *ngFor="let x of dataList">
+        <div fxLayout="row" fxLayoutAlign="space-between" *ngIf="x.cat_cntn.length">
+            <h2 class="font-continue"><span class="mr-3">
+                </span>{{x.title}}</h2>
+        </div>
+        <div fxLayout="row wrap" fxLayout.xs="column" flexLayoutAlign="flex-start">
+            <div fxFlex="16.66%" class="alt-br-4 alt-p-3" fxFlex.xs="100%" fxFlex.sm="50"
+                *ngFor="let card of x.cat_cntn" style="cursor: pointer;position: relative;">
+
+                <!-- <mat-icon (click)="deleteWatchList(card.id)" mat-icon-button class="btn-close">close</mat-icon> -->
+                <!-- <mat-icon *ngIf="card.access_type=='paid' " class="crown" aria-hidden="false" svgIcon="crown"
+                    [ngStyle]="{'display':card.type=='circle'?'none':'block'}"></mat-icon>
+                <div class="free-icon" *ngIf="card.access_type=='free' "
+                    [ngStyle]="{'display':card.type=='circle'?'none':'block'}"> <img src="assets/svgs/free.svg" alt="abc">
+                </div> -->
+
+                <div *ngIf="card.access_type == 'paid' && card?.type != 'circle' && !isSubscribed" class="crown">
+                    <img [src]="this.crownImg" alt="vive" loading="lazy" />
+                </div>
+                <!-- <div class="free-icon" *ngIf="card.access_type == 'free' && card?.type != 'circle' && !isSubscribed">
+                    <img src="assets/icons/FreeIcon.svg" alt="vive" loading="lazy" />
+                </div> -->
+
+                <div *ngIf="card.is_group == 1"  class="img-doc">
+                    <img [src]="card.sliderImg" class="alt-w-100 alt-br-4" (error)="onImgError($event)"
+                        [alt]="card.title + ' ' + card.series_title + ' ' + card.season_title"
+                        [title]="card.title + ' ' + card.series_title + ' ' + card.season_title" (click)="navigate(card, x.cat_name,card.age_group)"
+                        
+                       >
+                        <div class="cont-play"    >
+                            <img src="assets/vive/video-circle.svg" alt="" class="play_cont" (click)="navigate(card, x.cat_name,card.age_group)">
+                        </div>
+                </div>
+
+                <div *ngIf="card.is_group == 0" class="img-doc">
+                    <img [src]="card.sliderImg" class="alt-w-100 alt-br-4" (error)="onImgError($event)"
+                        [alt]="card.title" [title]="card.title" (click)="navigate(card, x.cat_name,card.age_group)">
+                        <div class="cont-play"    >
+                            <img src="assets/vive/video-circle.svg" alt="" class="play_cont" (click)="navigate(card, x.cat_name,card.age_group)">
+                        </div>
+                </div>
+
+
+                <mat-progress-bar mode="determinate" [value]="card.result" class="cont-prog"></mat-progress-bar>
+                <div class="containerContent" alt="vive">
+
+                    <div class="content">
+                        <p *ngIf="card.is_group==0" class="font-14 t-white">{{card.title}}</p>
+                        <p *ngIf="card.is_group==1" class="font-14 t-white">{{card.series_title}}</p>
+                    </div>
+                    <p class="t-y font-12" *ngIf="card.age_group != -1 && card.age_group != 999">
+                        {{card.duration.slice(3,5)}}m <span *ngIf="card.year!='' && navvar?.Others?.year==1">|
+                            {{card.year}}</span> <span *ngIf="card.age_group!='' && navvar?.Others?.age_rating==1"> |
+                            U/A {{card.age_group}}+</span> </p>
+                    <p class="t-y font-12" *ngIf="card.age_group == 999">{{card.duration.slice(3,5)}}m <span
+                            *ngIf="card.year!='' && navvar?.Others?.year==1">| {{card.year}}</span> <span
+                            *ngIf="navvar?.Others?.age_rating==1"> | U </span>
+                    </p>
+                    <p class="t-y font-12" *ngIf="card.age_group == -1">{{card.duration.slice(3,5)}}m <span
+                            *ngIf="card.year!='' && navvar?.Others?.year==1">| {{card.year}}</span> <span
+                            *ngIf="navvar?.Others?.age_rating==1"> | A </span>
+                    </p>
+                    <p class="font-14 subtitle" *ngIf="card.short_desc!='' && card.is_group==0">
+                        {{card.short_desc.substring(0,50) + '...'}}
+                    </p>
+                    <p class="font-14 subtitle" *ngIf="card.season_des!='' && card.is_group==1">
+                        {{card.season_des.substring(0,50) + '...'}}
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

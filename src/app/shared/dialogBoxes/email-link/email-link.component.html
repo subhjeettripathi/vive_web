@@ -1,0 +1,31 @@
+<div class="alt-login-content">
+    <div class="alt-login-img">
+        <img src="{{basesignin.emailLink.logo.web}}" alt="vive" class="vive-img">
+    </div>
+    <h3 class="text-white verifyEmail ">Email Verification</h3>
+    <div style="color: #FF8787 !important" *ngIf="show">{{invalidMsg}}</div>
+    <!-- <div style="color:red" *ngIf="loginForm.controls['email'].hasError('pattern') && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)">
+        Please
+        enter valid email address
+</div> -->
+    <br>
+    <button (click)="onNoClick()" class="close-btn">
+        <img src="assets/arrows_icons/VectorClose.svg" alt="">
+    </button>
+    <div>
+        <form action="" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+            <input id="myText" type="email" oninput="this.value = this.value.toLowerCase()" formControlName="email" placeholder="Please Enter Email Id"
+               (input)="data($event)">
+            <mat-error
+                *ngIf="loginForm.controls['email'].hasError('pattern') ">
+                Please mention correct mobile/Email address
+            </mat-error>
+
+            <br>
+            <button *ngIf="basesignin.emailLink.submit_btn.is_allow == 1" type="submit" class="submitEmailLink">{{basesignin.emailLink.submit_btn.text}}</button>
+
+        </form>
+    </div>
+
+</div>

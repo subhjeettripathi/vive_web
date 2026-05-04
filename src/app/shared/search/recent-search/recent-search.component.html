@@ -1,0 +1,65 @@
+<ng-container>
+    <div id="searchDiv">
+        <!-- <ng-container *ngFor="let category of getUniqueCategories()">
+            <h3>{{category}}</h3> -->
+        <div class="rec-search" fxLayout="row wrap" layout.xs="column" flexLayoutAlign="flex-start">
+            <div fxFlex="20%" fxFlex.xs="50%" fxFlex.sm="33.30%" fxFlex.md="20%" class="alt-brr-10 alt-p-3"
+                *ngFor="let data of recent_data" >
+                <!-- <mat-icon *ngIf="data.access_type=='paid' " class="crown" aria-hidden="false" svgIcon="crown"
+                        [ngStyle]="{'display':data.type=='circle'?'none':'block'}"></mat-icon>
+                    <div class="free-icon" *ngIf="data.access_type=='free' "
+                        [ngStyle]="{'display':data.type=='circle'?'none':'block'}"> <img src="assets/svgs/free.svg" alt="abc">
+                    </div> -->
+                <div class="">
+
+                    <div class="img-container" (click)="naviagte(data)">
+                        <div *ngIf="data.access_type == 'paid'  && !isSubscribed" class="crown">
+                                <img [src]="this.crownImg" alt="vive" loading="lazy" />
+                        </div>
+                        <div class="free-icon" *ngIf="data.access_type == 'free'  && !isSubscribed">
+                                <img [src]="freeImg" alt="vive" loading="lazy" />
+                        </div>
+                        <div *ngIf="data.is_live == '1' && data?.type != 'circle'" class="live-icon">
+                                <img [src]="liveImg" alt="">
+                        </div>
+                        <div *ngIf="data.is_group == 1">
+                                <img [src]="data.sliderImg || defaultThumb"
+                                        [alt]="data.series_title + ' ' + data.season_title + ' - '+data.title"
+                                        [title]="data.series_title + ' ' + data.season_title + ' - '+data.title"
+                                        [ngStyle]="{'border-radius':'8px','height':'auto','width':'100%'}"
+                                        class=" alt-brr-10" />
+                        </div>
+
+                        <div *ngIf="data.is_group == 0">
+                                <img [src]="data.sliderImg || defaultThumb" [alt]="data.title"
+                                        [title]="data.title"
+                                        [ngStyle]="{'border-radius':'8px','height':'auto','width':'100%'}"
+                                        class=" alt-brr-10" />
+                        </div>
+                </div>
+
+
+                    <!-- <div *ngIf="data.is_group == 0">
+                        <img [src]="data.sliderImg || defaultThumb" [alt]="data.title" [title]="data.title"
+                            [ngStyle]="{'border-radius':'8px','height':'auto','width':'100%'}" class="alt-brr-10" />
+                    </div> -->
+                    <div class="title-cont" [ngClass]="{ 'ellipsis': data.title?.length > 20 }">
+                        {{ data.title }}
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- </ng-container> -->
+
+    </div>
+    <div *ngIf="noSearch" class="row noSearchResult">
+        <ng-container>
+            <div class=" searchText">
+                No Recent Search results found Try again!
+            </div>
+        </ng-container>
+    </div>
+</ng-container>
